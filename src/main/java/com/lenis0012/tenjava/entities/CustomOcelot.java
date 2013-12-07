@@ -64,8 +64,12 @@ public class CustomOcelot extends EntityOcelot implements CustomEntity {
 		this.move(player, (double) forward, (double) sideways);
 		if(jumping) {
 			this.jump();
+		} if(sneaking) {
+			this.motY = 8;
+			this.velocityChanged = true;
+			world.getWorld().createExplosion(this.getBukkitEntity().getLocation(), 1);
 		}
 		
-		return !sneaking;
+		return true;
 	}
 }

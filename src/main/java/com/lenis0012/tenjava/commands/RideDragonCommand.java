@@ -4,6 +4,7 @@ import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 import com.lenis0012.tenjava.Core;
@@ -27,8 +28,10 @@ public class RideDragonCommand implements CommandExecutor {
 			dragon.getBukkitEntity().setPassenger(player);
 			player.sendMessage("\247aEntering a dragon!");
 		} else {
+			Entity entity = player.getVehicle();
 			player.leaveVehicle();
 			player.sendMessage("\247aLeft your vehicle!");
+			entity.remove();
 		}
 		
 		return true;
