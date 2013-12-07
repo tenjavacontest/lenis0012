@@ -28,10 +28,13 @@ public class CustomOcelot extends EntityOcelot implements CustomEntity {
 	@Override
 	public void move(double dx, double dy, double dz) {
 		super.move(dx, dy, dz);
-		world.getWorld().playEffect(this.getBukkitEntity().getLocation(), 
-				Effect.MOBSPAWNER_FLAMES, 1);
-		if(Math.random() > 0.8) {
-			world.broadcastEntityEffect(this, (byte) 7);
+		
+		if((dx > 0 || dz > 0) && Math.random() < 0.3) {
+			world.getWorld().playEffect(this.getBukkitEntity().getLocation(), 
+					Effect.MOBSPAWNER_FLAMES, 1);
+			if(Math.random() > 0.8) {
+				world.broadcastEntityEffect(this, (byte) 7);
+			}
 		}
 	}
 	
@@ -64,7 +67,7 @@ public class CustomOcelot extends EntityOcelot implements CustomEntity {
 		this.move(player, (double) forward, (double) sideways);
 		if(jumping) {
 			this.jump();
-		} if(sneaking) {
+		} if(sneaking && this.onGround) {
 			this.motY = 8;
 			this.velocityChanged = true;
 			world.getWorld().createExplosion(this.getBukkitEntity().getLocation(), 1);
