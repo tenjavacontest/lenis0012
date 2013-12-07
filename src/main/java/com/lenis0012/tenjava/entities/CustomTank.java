@@ -4,7 +4,11 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_6_R3.CraftWorld;
 import org.bukkit.entity.Minecart;
+import org.bukkit.entity.Player;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
+import org.bukkit.util.Vector;
+
+import com.lenis0012.tenjava.Core;
 
 import net.minecraft.server.v1_6_R3.EntityMinecartRideable;
 
@@ -20,12 +24,17 @@ public class CustomTank extends EntityMinecartRideable implements CustomEntity {
 		return (Minecart) this.getBukkitEntity();
 	}
 	
-	public void move(double x, double z) {
-		super.move(x, 0, z);
+	public void move(Player player, double x, double z) {
+//		super.move(x, 0, z);
+		if(x > 0 || z > 0) {
+			Vector velocity = player.getLocation().getDirection().multiply(1);
+			this.getBukkitEntity().setVelocity(velocity);
+		}
 	}
 	
 	public void jump() {
 		if(this.onGround) {
+			Core.debug("Performing jump.");
 			this.motY  = 1.0;
 		}
 	}
@@ -37,8 +46,8 @@ public class CustomTank extends EntityMinecartRideable implements CustomEntity {
 	}
 
 	@Override
-	public boolean onPlayerInput(float forward, float sideways,boolean jumping, boolean sneaking) {
-		this.move((double) forward, (double) sideways);
+	public boolean onPlayerInput(Player player, float forward, float sideways,boolean jumping, boolean sneaking) {
+		this.move(player, (double) forward, (double) sideways);
 		if(jumping) {
 			this.jump();
 		}
