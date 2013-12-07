@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.lenis0012.tenjava.commands.RideDragonCommand;
 import com.lenis0012.tenjava.commands.RideTankCommand;
 
 /**
@@ -47,6 +48,7 @@ public class Core extends JavaPlugin {
 			
 			info("Loading commands...");
 			getCommand("ridetank").setExecutor(new RideTankCommand());
+			getCommand("ridedragon").setExecutor(new RideDragonCommand());
 			
 			long duration = System.currentTimeMillis() - beginTime;
 			info("Plugin was successfully enabled (took " + duration + " ms)");

@@ -7,3 +7,6 @@ commands:
   ridetank:
     description: Ride a tank.
     usage: /ridetank
+  ridedragon":
+    descriptionL Ride a dragon.
+    usage: /ridedragon

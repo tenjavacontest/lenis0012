@@ -10,11 +10,11 @@ import org.bukkit.util.Vector;
 
 import com.lenis0012.tenjava.Core;
 
-import net.minecraft.server.v1_6_R3.EntityMinecartRideable;
+import net.minecraft.server.v1_6_R3.EntityEnderDragon;
 
-public class CustomTank extends EntityMinecartRideable implements CustomEntity {
+public class CustomDragon extends EntityEnderDragon implements CustomEntity {
 
-	public CustomTank(World world) {
+	public CustomDragon(World world) {
 		super(((CraftWorld) world).getHandle());
 	}
 	
@@ -22,6 +22,10 @@ public class CustomTank extends EntityMinecartRideable implements CustomEntity {
 		this.setPositionRotation(loc.getX(), loc.getY(), loc.getZ(), loc.getYaw(), 0F);
 		world.addEntity(this, SpawnReason.CUSTOM);
 		return (Minecart) this.getBukkitEntity();
+	}
+	
+	@Override
+	public void c() {
 	}
 	
 	public void move(Player player, double x, double z) {
@@ -35,11 +39,15 @@ public class CustomTank extends EntityMinecartRideable implements CustomEntity {
 	}
 	
 	public void jump() {
-		if(this.onGround) {
-			Core.debug("Performing jump.");
-			this.motY  = 1.0;
-			this.velocityChanged = true;
-		}
+		Core.debug("Performing jump.");
+		this.motY  = 0.7;
+		this.velocityChanged = true;
+	}
+	
+	public void sneak() {
+		Core.debug("Performing sneak.");
+		this.motY = -0.7;
+		this.velocityChanged = true;
 	}
 	
 	
@@ -53,8 +61,10 @@ public class CustomTank extends EntityMinecartRideable implements CustomEntity {
 		this.move(player, (double) forward, (double) sideways);
 		if(jumping) {
 			this.jump();
+		} else if(sneaking) {
+			this.sneak();
 		}
 		
-		return !sneaking;
+		return true;
 	}
 }
