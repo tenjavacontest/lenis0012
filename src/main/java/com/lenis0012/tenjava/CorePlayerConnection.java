@@ -41,7 +41,7 @@ public class CorePlayerConnection extends PlayerConnection {
 				float sideways = Utils.InputPacket.getSideways(packet);
 				boolean jump = Utils.InputPacket.getJump(packet);
 				boolean unmount = Utils.InputPacket.getUnmount(packet);
-				if(cEntity.onPlayerInput(forward, sideways, jump, unmount)) {
+				if(cEntity.onPlayerInput(bPlayer, forward, sideways, jump, unmount)) {
 					return;
 				}
 			}
