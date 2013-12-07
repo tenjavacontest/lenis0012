@@ -20,7 +20,7 @@ import com.lenis0012.tenjava.entities.CustomTank;
  * @author lenis0012
  */
 public class Core extends JavaPlugin {
-	private static final boolean DEBUG_ENABLED = true;
+	private static final boolean DEBUG_ENABLED = false;
 	private static Core instance;
 	private static Logger logger;
 	
