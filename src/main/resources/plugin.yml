@@ -8,5 +8,5 @@ commands:
     description: Ride a tank.
     usage: /ridetank
   ridedragon:
-    descriptionL Ride a dragon.
+    description: Ride a dragon.
     usage: /ridedragon

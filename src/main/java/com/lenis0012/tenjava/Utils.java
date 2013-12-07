@@ -4,9 +4,11 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 
 import net.minecraft.server.v1_6_R3.Entity;
 import net.minecraft.server.v1_6_R3.EntityPlayer;
+import net.minecraft.server.v1_6_R3.EntityTypes;
 import net.minecraft.server.v1_6_R3.MinecraftServer;
 import net.minecraft.server.v1_6_R3.Packet27PlayerInput;
 import net.minecraft.server.v1_6_R3.ServerConnection;
@@ -20,12 +22,18 @@ import org.bukkit.entity.Player;
 public class Utils {
 	private static final Method getServerConnection = getMethod(MinecraftServer.class, "ag");
 	private static final Field getPlayerConnections = getField(ServerConnection.class, "c");
+	private static final Field getClassToString = getField(EntityTypes.class, "c");
+	private static final Field getClassToInteger = getField(EntityTypes.class, "e");
 	private static List<Object> playerConnections;
+	private static Map<Class<?>, String> classToString;
+	private static Map<Class<?>, Integer> classToInteger;
 	
 	@SuppressWarnings("unchecked")
 	public static void load() {
 		Object serverConnection = invoke(getServerConnection, getMCServer());
 		playerConnections = (List<Object>) getFieldValue(getPlayerConnections, serverConnection);
+		classToString = getFieldValue(getClassToString, null);
+		classToInteger = getFieldValue(getClassToInteger, null);
 	}
 	
 	/**
@@ -43,6 +51,18 @@ public class Utils {
 				it.set(newPlayerConnection);
 			}
 		}
+	}
+	
+	/**
+	 * Register an entity type to the server
+	 * 
+	 * @param eClass Entity network class
+	 * @param eName Entity network name
+	 * @param eId Entity network id
+	 */
+	public static void registerEntityType(Class<?> eClass, String eName, int eId) {
+		classToString.put(eClass, eName);
+		classToInteger.put(eClass, eId);
 	}
 	
 	/**

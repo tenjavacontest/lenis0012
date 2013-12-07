@@ -8,6 +8,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.lenis0012.tenjava.commands.RideDragonCommand;
 import com.lenis0012.tenjava.commands.RideTankCommand;
+import com.lenis0012.tenjava.entities.CustomDragon;
+import com.lenis0012.tenjava.entities.CustomTank;
 
 /**
  * Ten Java Contest.
@@ -49,6 +51,10 @@ public class Core extends JavaPlugin {
 			info("Loading commands...");
 			getCommand("ridetank").setExecutor(new RideTankCommand());
 			getCommand("ridedragon").setExecutor(new RideDragonCommand());
+			
+			info("Registering custom entities...");
+			Utils.registerEntityType(CustomTank.class, "Minecart", 42);
+			Utils.registerEntityType(CustomDragon.class, "Enderdragon", 63);
 			
 			long duration = System.currentTimeMillis() - beginTime;
 			info("Plugin was successfully enabled (took " + duration + " ms)");

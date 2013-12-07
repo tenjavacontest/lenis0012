@@ -3,7 +3,7 @@ package com.lenis0012.tenjava.entities;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_6_R3.CraftWorld;
-import org.bukkit.entity.Minecart;
+import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.util.Vector;
@@ -18,10 +18,10 @@ public class CustomDragon extends EntityEnderDragon implements CustomEntity {
 		super(((CraftWorld) world).getHandle());
 	}
 	
-	public Minecart spawn(Location loc) {
+	public EnderDragon spawn(Location loc) {
 		this.setPositionRotation(loc.getX(), loc.getY(), loc.getZ(), loc.getYaw(), 0F);
 		world.addEntity(this, SpawnReason.CUSTOM);
-		return (Minecart) this.getBukkitEntity();
+		return (EnderDragon) this.getBukkitEntity();
 	}
 	
 	@Override
