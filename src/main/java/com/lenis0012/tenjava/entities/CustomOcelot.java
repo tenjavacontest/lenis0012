@@ -1,32 +1,38 @@
 package com.lenis0012.tenjava.entities;
 
+import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_6_R3.CraftWorld;
-import org.bukkit.entity.EnderDragon;
+import org.bukkit.entity.Ocelot;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.util.Vector;
 
 import com.lenis0012.tenjava.Core;
 
-import net.minecraft.server.v1_6_R3.EntityEnderDragon;
+import net.minecraft.server.v1_6_R3.EntityOcelot;
 
-public class CustomDragon extends EntityEnderDragon implements CustomEntity {
+public class CustomOcelot extends EntityOcelot implements CustomEntity {
 
-	public CustomDragon(World world) {
+	public CustomOcelot(World world) {
 		super(((CraftWorld) world).getHandle());
 	}
 	
-	public EnderDragon spawn(Location loc) {
+	public Ocelot spawn(Location loc) {
 		this.setPositionRotation(loc.getX(), loc.getY(), loc.getZ(), loc.getYaw(), 0F);
 		world.addEntity(this, SpawnReason.CUSTOM);
-		return (EnderDragon) this.getBukkitEntity();
+		return (Ocelot) this.getBukkitEntity();
 	}
 	
 	@Override
-	public void c() {
-		super.c();
+	public void move(double dx, double dy, double dz) {
+		super.move(dx, dy, dz);
+		world.getWorld().playEffect(this.getBukkitEntity().getLocation(), 
+				Effect.MOBSPAWNER_FLAMES, 1);
+		if(Math.random() > 0.8) {
+			world.broadcastEntityEffect(this, (byte) 7);
+		}
 	}
 	
 	public void move(Player player, double x, double z) {
@@ -40,15 +46,11 @@ public class CustomDragon extends EntityEnderDragon implements CustomEntity {
 	}
 	
 	public void jump() {
-		Core.debug("Performing jump.");
-		this.motY  = 0.7;
-		this.velocityChanged = true;
-	}
-	
-	public void sneak() {
-		Core.debug("Performing sneak.");
-		this.motY = -0.7;
-		this.velocityChanged = true;
+		if(this.onGround) {
+			Core.debug("Performing jump.");
+			this.motY  = 1.0;
+			this.velocityChanged = true;
+		}
 	}
 	
 	
@@ -62,10 +64,8 @@ public class CustomDragon extends EntityEnderDragon implements CustomEntity {
 		this.move(player, (double) forward, (double) sideways);
 		if(jumping) {
 			this.jump();
-		} else if(sneaking) {
-			this.sneak();
 		}
 		
-		return true;
+		return !sneaking;
 	}
 }

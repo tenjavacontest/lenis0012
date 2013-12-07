@@ -7,8 +7,10 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.lenis0012.tenjava.commands.RideDragonCommand;
+import com.lenis0012.tenjava.commands.RideKittenCommand;
 import com.lenis0012.tenjava.commands.RideTankCommand;
 import com.lenis0012.tenjava.entities.CustomDragon;
+import com.lenis0012.tenjava.entities.CustomOcelot;
 import com.lenis0012.tenjava.entities.CustomTank;
 
 /**
@@ -51,10 +53,12 @@ public class Core extends JavaPlugin {
 			info("Loading commands...");
 			getCommand("ridetank").setExecutor(new RideTankCommand());
 			getCommand("ridedragon").setExecutor(new RideDragonCommand());
+			getCommand("ridekitten").setExecutor(new RideKittenCommand());
 			
 			info("Registering custom entities...");
 			Utils.registerEntityType(CustomTank.class, "Minecart", 42);
 			Utils.registerEntityType(CustomDragon.class, "Enderdragon", 63);
+			Utils.registerEntityType(CustomOcelot.class, "Ocelot", 98);
 			
 			long duration = System.currentTimeMillis() - beginTime;
 			info("Plugin was successfully enabled (took " + duration + " ms)");

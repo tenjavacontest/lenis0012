@@ -10,3 +10,6 @@ commands:
   ridedragon:
     description: Ride a dragon.
     usage: /ridedragon
+  ridekitten:
+    description: Ride a kitten.
+    usage: /ridekitten
