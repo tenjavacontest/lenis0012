@@ -1,4 +1,9 @@
 name: tenjava-lenis0012
 version: 0.1
 main: com.lenis0012.tenjava.Core
+description: Anything related to entity controlling!
 author: lenis0012
+commands:
+  ridetank:
+    description: Ride a tank.
+    usage: /ridetank

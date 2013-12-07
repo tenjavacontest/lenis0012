@@ -6,6 +6,8 @@ import java.util.logging.Logger;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.lenis0012.tenjava.commands.RideTankCommand;
+
 /**
  * Ten Java Contest.
  * Starting at: 4PM
@@ -42,6 +44,9 @@ public class Core extends JavaPlugin {
 			info("Loading listeners...");
 			PluginManager pm = this.getServer().getPluginManager();
 			pm.registerEvents(new CoreListener(), this);
+			
+			info("Loading commands...");
+			getCommand("ridetank").setExecutor(new RideTankCommand());
 			
 			long duration = System.currentTimeMillis() - beginTime;
 			info("Plugin was successfully enabled (took " + duration + " ms)");
