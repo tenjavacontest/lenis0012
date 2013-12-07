@@ -5,12 +5,15 @@ import java.lang.reflect.Method;
 import java.util.List;
 import java.util.ListIterator;
 
+import net.minecraft.server.v1_6_R3.Entity;
 import net.minecraft.server.v1_6_R3.EntityPlayer;
 import net.minecraft.server.v1_6_R3.MinecraftServer;
+import net.minecraft.server.v1_6_R3.Packet27PlayerInput;
 import net.minecraft.server.v1_6_R3.ServerConnection;
 
 import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.v1_6_R3.CraftServer;
+import org.bukkit.craftbukkit.v1_6_R3.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_6_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
@@ -59,6 +62,16 @@ public class Utils {
 	 */
 	public static EntityPlayer getNMSPlayer(Player player) {
 		return ((CraftPlayer) player).getHandle();
+	}
+	
+	/**
+	 * Get the nms instance of an entity.
+	 * 
+	 * @param entity Entity bukkit instance.
+	 * @return Entity nms instance.
+	 */
+	public static Entity getNMSEntity(org.bukkit.entity.Entity entity) {
+		return ((CraftEntity) entity).getHandle();
 	}
 	
 	/**
@@ -130,6 +143,30 @@ public class Utils {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+	
+	public static class InputPacket {
+		private static final Class<?> CLASS = Packet27PlayerInput.class;
+		private static final Field forward = getField(CLASS, "a");
+		private static final Field sideays = getField(CLASS, "b");
+		private static final Field jump = getField(CLASS, "c");
+		private static final Field unmount = getField(CLASS, "d");
+		
+		public static float getForward(Object instance) {
+			return getFieldValue(forward, instance);
+		}
+		
+		public static float getSideways(Object instance) {
+			return getFieldValue(sideays, instance);
+		}
+		
+		public static boolean getJump(Object instance) {
+			return getFieldValue(jump, instance);
+		}
+		
+		public static boolean getUnmount(Object instance) {
+			return getFieldValue(unmount, instance);
 		}
 	}
 }
