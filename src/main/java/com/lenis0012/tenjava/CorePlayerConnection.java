@@ -21,6 +21,7 @@ public class CorePlayerConnection extends PlayerConnection {
 		INetworkManager networkManager = oldConnection.networkManager;
 		PlayerConnection newConnection = new CorePlayerConnection(server, networkManager, eplayer);
 		Utils.replacePlayerConnection(oldConnection, newConnection);
+		Core.debug("Player connection for player " + player.getName() + " was hooked.");
 	}
 
 	public void a(Packet27PlayerInput packet) {
