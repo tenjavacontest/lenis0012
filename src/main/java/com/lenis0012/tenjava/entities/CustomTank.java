@@ -27,8 +27,10 @@ public class CustomTank extends EntityMinecartRideable implements CustomEntity {
 	public void move(Player player, double x, double z) {
 //		super.move(x, 0, z);
 		if(x > 0 || z > 0) {
-			Vector velocity = player.getLocation().getDirection().multiply(1);
-			this.getBukkitEntity().setVelocity(velocity);
+			Vector velocity = player.getLocation().getDirection().multiply(1.5);
+			this.motX = velocity.getX();
+			this.motZ = velocity.getZ();
+			this.velocityChanged = true;
 		}
 	}
 	
@@ -36,6 +38,7 @@ public class CustomTank extends EntityMinecartRideable implements CustomEntity {
 		if(this.onGround) {
 			Core.debug("Performing jump.");
 			this.motY  = 1.0;
+			this.velocityChanged = true;
 		}
 	}
 	
