@@ -17,6 +17,7 @@ public class Core extends JavaPlugin {
 	
 	@Override
 	public void onEnable() {
+		Utils.load();
 		PluginManager pm = this.getServer().getPluginManager();
 		pm.registerEvents(new CoreListener(), this);
 	}
