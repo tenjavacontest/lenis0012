@@ -43,6 +43,6 @@ public class CustomTank extends EntityMinecartRideable implements CustomEntity {
 			this.jump();
 		}
 		
-		return true;
+		return !sneaking;
 	}
 }

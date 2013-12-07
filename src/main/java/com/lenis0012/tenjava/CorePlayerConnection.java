@@ -32,17 +32,21 @@ public class CorePlayerConnection extends PlayerConnection {
 	@Override
 	public void a(Packet27PlayerInput packet) {
 		Entity vehicle = bPlayer.getVehicle();
-		Object nmsEntity = Utils.getNMSEntity(vehicle);
-		if(nmsEntity instanceof CustomEntity) {
-			Core.debug("Received an input packet from " + bPlayer.getName());
-			CustomEntity cEntity  = (CustomEntity) nmsEntity;
-			float forward = Utils.InputPacket.getForward(packet);
-			float sideways = Utils.InputPacket.getSideways(packet);
-			boolean jump = Utils.InputPacket.getJump(packet);
-			boolean unmount = Utils.InputPacket.getUnmount(packet);
-			if(!cEntity.onPlayerInput(forward, sideways, jump, unmount)) {
-				super.a(packet);
+		if(vehicle != null) {
+			Object nmsEntity = Utils.getNMSEntity(vehicle);
+			if(nmsEntity instanceof CustomEntity) {
+				Core.debug("Received an input packet from " + bPlayer.getName());
+				CustomEntity cEntity  = (CustomEntity) nmsEntity;
+				float forward = Utils.InputPacket.getForward(packet);
+				float sideways = Utils.InputPacket.getSideways(packet);
+				boolean jump = Utils.InputPacket.getJump(packet);
+				boolean unmount = Utils.InputPacket.getUnmount(packet);
+				if(cEntity.onPlayerInput(forward, sideways, jump, unmount)) {
+					return;
+				}
 			}
 		}
+		
+		super.a(packet);
 	}
 }
