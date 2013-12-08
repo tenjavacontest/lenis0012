@@ -11,8 +11,8 @@ Commands
 
 <table>
   <tr>
-    <th>Command<th>
-    <th>Description<th>
+    <th>Command</th>
+    <th>Description</th>
   </tr>
   <tr>
     <th>/ridetank</th>
