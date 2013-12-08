@@ -6,6 +6,15 @@ Livestream url: http://www.twitch.tv/bluedevonmovies<br>
 Starting at: 4PM (UTC)<br>
 CB Build: 1.6.4 R2.0<br>
 
+Description
+==========
+This plugin contains multiple types of etnityt controlling.<br>
+You can ride on 3 times of entities, and each one has its own abilities.<br>
+With a tank, you can shoot.<br>
+With a dragon, you can fly.<br>
+And with a kitten, you can launch yourself and nake players laugh.<br>
+To get started, take a look at the commands and see what they do by yourself.<br>
+
 Commands
 =========
 
