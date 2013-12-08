@@ -10,6 +10,7 @@ import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.util.Vector;
 
 import com.lenis0012.tenjava.Core;
+import com.lenis0012.tenjava.Utils;
 
 import net.minecraft.server.v1_6_R3.EntityOcelot;
 
@@ -17,6 +18,7 @@ public class CustomOcelot extends EntityOcelot implements CustomEntity {
 
 	public CustomOcelot(World world) {
 		super(((CraftWorld) world).getHandle());
+		Utils.clearPathfinding(goalSelector);
 	}
 	
 	public Ocelot spawn(Location loc) {

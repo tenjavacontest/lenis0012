@@ -11,6 +11,7 @@ import net.minecraft.server.v1_6_R3.EntityPlayer;
 import net.minecraft.server.v1_6_R3.EntityTypes;
 import net.minecraft.server.v1_6_R3.MinecraftServer;
 import net.minecraft.server.v1_6_R3.Packet27PlayerInput;
+import net.minecraft.server.v1_6_R3.PathfinderGoalSelector;
 import net.minecraft.server.v1_6_R3.ServerConnection;
 
 import org.bukkit.Bukkit;
@@ -24,6 +25,8 @@ public class Utils {
 	private static final Field getPlayerConnections = getField(ServerConnection.class, "c");
 	private static final Field getClassToString = getField(EntityTypes.class, "c");
 	private static final Field getClassToInteger = getField(EntityTypes.class, "e");
+	private static final Field getTargetList1 = getField(PathfinderGoalSelector.class, "a");
+	private static final Field getTargetList2 = getField(PathfinderGoalSelector.class, "b");
 	private static List<Object> playerConnections;
 	private static Map<Class<?>, String> classToString;
 	private static Map<Class<?>, Integer> classToInteger;
@@ -51,6 +54,18 @@ public class Utils {
 				it.set(newPlayerConnection);
 			}
 		}
+	}
+	
+	/**
+	 * Clear all goals from a path finder instance.
+	 * 
+	 * @param selector Path finder instance.
+	 */
+	public static void clearPathfinding(PathfinderGoalSelector selector) {
+		List<?> list = getFieldValue(getTargetList1, selector);
+		List<?> list2 = getFieldValue(getTargetList2, selector);
+		list.clear();
+		list2.clear();
 	}
 	
 	/**

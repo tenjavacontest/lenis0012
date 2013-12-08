@@ -13,7 +13,6 @@ import com.lenis0012.tenjava.Core;
 import net.minecraft.server.v1_6_R3.EntityEnderDragon;
 
 public class CustomDragon extends EntityEnderDragon implements CustomEntity {
-
 	public CustomDragon(World world) {
 		super(((CraftWorld) world).getHandle());
 	}
@@ -27,6 +26,12 @@ public class CustomDragon extends EntityEnderDragon implements CustomEntity {
 	@Override
 	public void c() {
 		super.c();
+		
+		if(this.passenger != null) {
+			float pyaw = this.passenger.yaw;
+			this.yaw = pyaw;
+		} else
+			this.die();
 	}
 	
 	public void move(Player player, double x, double z) {
