@@ -29,9 +29,18 @@ public class CustomDragon extends EntityEnderDragon implements CustomEntity {
 		
 		if(this.passenger != null) {
 			float pyaw = this.passenger.yaw;
-			this.yaw = pyaw;
+			this.yaw = fixyaw(pyaw);
 		} else
 			this.die();
+	}
+	
+	private float fixyaw(float yaw) {
+		yaw -= 180;
+		if(yaw < 0) {
+			yaw += 360;
+		}
+		
+		return yaw;
 	}
 	
 	public void move(Player player, double x, double z) {

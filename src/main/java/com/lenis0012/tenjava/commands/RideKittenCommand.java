@@ -26,7 +26,7 @@ public class RideKittenCommand implements CommandExecutor {
 			CustomOcelot ocelot = new CustomOcelot(player.getWorld());
 			ocelot.spawn(loc);
 			ocelot.getBukkitEntity().setPassenger(player);
-			player.sendMessage("\247aEntering a kitten!");
+			player.sendMessage("\247aEntering a kitten, type again to unmount.");
 		} else {
 			Entity entity = player.getVehicle();
 			player.leaveVehicle();

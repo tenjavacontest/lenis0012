@@ -27,6 +27,16 @@ public class CustomOcelot extends EntityOcelot implements CustomEntity {
 		return (Ocelot) this.getBukkitEntity();
 	}
 	
+	public void l_() {
+		super.l_();
+		
+		if(this.passenger != null) {
+			float pyaw = this.passenger.yaw;
+			this.yaw = pyaw;
+		} else
+			this.die();
+	}
+	
 	@Override
 	public void move(double dx, double dy, double dz) {
 		super.move(dx, dy, dz);
@@ -34,7 +44,7 @@ public class CustomOcelot extends EntityOcelot implements CustomEntity {
 		if((dx > 0 || dz > 0) && Math.random() < 0.3) {
 			world.getWorld().playEffect(this.getBukkitEntity().getLocation(), 
 					Effect.MOBSPAWNER_FLAMES, 1);
-			if(Math.random() > 0.8) {
+			if(Math.random() > 0.95) {
 				world.broadcastEntityEffect(this, (byte) 7);
 			}
 		}
@@ -70,7 +80,7 @@ public class CustomOcelot extends EntityOcelot implements CustomEntity {
 		if(jumping) {
 			this.jump();
 		} if(sneaking && this.onGround) {
-			this.motY = 8;
+			this.motY = 4;
 			this.velocityChanged = true;
 			world.getWorld().createExplosion(this.getBukkitEntity().getLocation(), 1);
 		}

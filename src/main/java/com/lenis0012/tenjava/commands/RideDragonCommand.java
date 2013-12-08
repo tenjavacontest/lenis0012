@@ -26,7 +26,7 @@ public class RideDragonCommand implements CommandExecutor {
 			CustomDragon dragon = new CustomDragon(player.getWorld());
 			dragon.spawn(loc);
 			dragon.getBukkitEntity().setPassenger(player);
-			player.sendMessage("\247aEntering a dragon!");
+			player.sendMessage("\247aEntering a dragon, type again to unmount.");
 		} else {
 			Entity entity = player.getVehicle();
 			player.leaveVehicle();
