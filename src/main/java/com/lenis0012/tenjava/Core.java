@@ -3,6 +3,8 @@ package com.lenis0012.tenjava;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -70,7 +72,15 @@ public class Core extends JavaPlugin {
 	
 	@Override
 	public void onDisable() {
+		info("Unhooking all players...");
+		for(Player player : Bukkit.getOnlinePlayers()) {
+			CorePlayerConnection.unhook(player);
+		}
+		
+		//Compelete disabled
 		setInstance(null);
+		
+		info("Plugin disabled, have a good night!");
 	}
 	
 	/**

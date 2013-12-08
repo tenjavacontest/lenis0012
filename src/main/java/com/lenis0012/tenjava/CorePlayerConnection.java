@@ -25,8 +25,20 @@ public class CorePlayerConnection extends PlayerConnection {
 		PlayerConnection oldConnection = eplayer.playerConnection;
 		INetworkManager networkManager = oldConnection.networkManager;
 		PlayerConnection newConnection = new CorePlayerConnection(server, networkManager, eplayer);
+		eplayer.playerConnection = newConnection;
 		Utils.replacePlayerConnection(oldConnection, newConnection);
 		Core.debug("Player connection for player " + player.getName() + " was hooked.");
+	}
+	
+	public static void unhook(Player player) {
+		MinecraftServer server = Utils.getMCServer();
+		EntityPlayer eplayer = Utils.getNMSPlayer(player);
+		PlayerConnection oldConnection = eplayer.playerConnection;
+		INetworkManager networkManager = oldConnection.networkManager;
+		PlayerConnection newConnection = new PlayerConnection(server, networkManager, eplayer);
+		eplayer.playerConnection = newConnection;
+		Utils.replacePlayerConnection(oldConnection, newConnection);
+		Core.debug("Player connection for player " + player.getName() + " was unhooked.");
 	}
 
 	@Override
