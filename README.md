@@ -8,8 +8,8 @@ CB Build: 1.6.4 R2.0<br>
 
 Description
 ==========
-This plugin contains multiple types of etnityt controlling.<br>
-You can ride on 3 times of entities, and each one has its own abilities.<br>
+This plugin contains multiple types of entity controlling.<br>
+You can ride on 3 types of entities, and each one has its own abilities.<br>
 With a tank, you can shoot.<br>
 With a dragon, you can fly.<br>
 And with a kitten, you can launch yourself and nake players laugh.<br>
