@@ -14,6 +14,7 @@ With a tank, you can shoot.<br>
 With a dragon, you can fly.<br>
 And with a kitten, you can launch yourself and nake players laugh.<br>
 To get started, take a look at the commands and see what they do by yourself.<br>
+**It is recommented to use this plugin with creatie enabled!**
 
 Commands
 =========

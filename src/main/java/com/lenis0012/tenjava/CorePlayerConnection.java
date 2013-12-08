@@ -19,6 +19,11 @@ public class CorePlayerConnection extends PlayerConnection {
 		this.bPlayer = player.getBukkitEntity();
 	}
 
+	/**
+	 * Hook a player, register his player connection under a custom one.
+	 * 
+	 * @param player Player to hook.
+	 */
 	public static void hook(Player player) {
 		MinecraftServer server = Utils.getMCServer();
 		EntityPlayer eplayer = Utils.getNMSPlayer(player);
@@ -30,6 +35,11 @@ public class CorePlayerConnection extends PlayerConnection {
 		Core.debug("Player connection for player " + player.getName() + " was hooked.");
 	}
 	
+	/**
+	 * Reset a player's connection.
+	 * 
+	 * @param player Player to reset.
+	 */
 	public static void unhook(Player player) {
 		MinecraftServer server = Utils.getMCServer();
 		EntityPlayer eplayer = Utils.getNMSPlayer(player);

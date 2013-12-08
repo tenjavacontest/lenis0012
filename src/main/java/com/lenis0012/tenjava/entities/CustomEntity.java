@@ -12,7 +12,7 @@ public interface CustomEntity {
 	 * @param sideways Sideways movement
 	 * @param jumping Holding spacebar?
 	 * @param sneaking Holding shift?
-	 * @return Precent from sending to server publicly?
+	 * @return Prevent from sending to server publicly?
 	 */
 	public boolean onPlayerInput(Player player, float forward, float sideways, boolean jumping, boolean sneaking);
 }
